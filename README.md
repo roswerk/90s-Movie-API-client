@@ -19,8 +19,3 @@ Please npm install the following modules
 
 `npm install -g parcel@next`
 `npm install --save react react-dom`
-
-You'll also need to import:
-
--React from "react";
--ReactDOM from "react-dom";
