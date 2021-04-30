@@ -26299,19 +26299,19 @@ try {
           _id: 1,
           Title: 'Inception',
           Description: 'desc1...',
-          ImagePath: '...',
+          ImagePath: 'https://i.picsum.photos/id/274/200/300.jpg?hmac=1D3k-fgapICO1fYT7KMrtIquVz8pPybJ4ByxPwwXWRg',
           Director: "Director 1"
         }, {
           _id: 2,
           Title: 'The Shawshank Redemption',
           Description: 'desc2...',
-          ImagePath: '...',
+          ImagePath: 'https://i.picsum.photos/id/274/200/300.jpg?hmac=1D3k-fgapICO1fYT7KMrtIquVz8pPybJ4ByxPwwXWRg',
           Director: "Director 2 "
         }, {
           _id: 3,
           Title: 'Gladiator',
           Description: 'desc3...',
-          ImagePath: '...',
+          ImagePath: 'https://i.picsum.photos/id/274/200/300.jpg?hmac=1D3k-fgapICO1fYT7KMrtIquVz8pPybJ4ByxPwwXWRg',
           Director: "Director 3 "
         }],
         selectedMovie: null
