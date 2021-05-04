@@ -1,4 +1,5 @@
 import React from "react";
+import "./movie-view.scss"
 
 export class MovieView extends React.Component{
 
@@ -8,19 +9,19 @@ export class MovieView extends React.Component{
     return(
     <div className="movie-view">
       <div className="movie-poster">
-        <img src={movie.ImagePath} alt="Movie Image"/>
+        <img src={movie.imageURL} alt="Movie Image" className="poster"/>
       </div>
       <div className="movie-title">
         <span className="label">Title: </span>
-        <span className="value">{movie.Title}</span>
+        <span className="value">{movie.title}</span>
       </div>
       <div className="movie-description">
         <span className="label">Description: </span>
-        <span className="value">{movie.Description}</span>
+        <span className="value">{movie.description}</span>
       </div>
       <div className="movie-director">
         <span className="label">Director: </span>
-        <span className="value">{movie.Director}</span>
+        <span className="value">{movie.director.name}</span>
       </div>
       <button onClick={() => {onBackClick(null);}}>Back</button>
 
