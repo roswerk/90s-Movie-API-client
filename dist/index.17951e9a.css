@@ -1,12 +1,21 @@
-
+.poster {
+  width: 100px;
+  height: auto;
+}
 .poster {
   width: 300px;
   height: auto;
 }
-
+.login-view {
+  margin-top: 280px;
+}
 
 
 .my-flix {
   color: steelBlue;
+}
+
+.mainView-Margin {
+  margin-top: 100px;
 }
 /*# sourceMappingURL=index.17951e9a.css.map */
