@@ -26834,6 +26834,7 @@ try {
           }
         }, movie.description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
           onClick: () => onMovieClick(movie),
+          variant: "danger",
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -28608,6 +28609,7 @@ try {
             onBackClick(null);
           },
           className: "mt-5",
+          variant: "danger",
           __self: this,
           __source: {
             fileName: _jsxFileName,
