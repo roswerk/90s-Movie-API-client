@@ -13,17 +13,18 @@ export class MovieCard extends React.Component{
 
     return (
    
-    <Card bg="light" border="danger">
+    <Card bg="light" border="danger" className="movieCards">
       <Card.Img variant="top" src={movie.imageURL} className="poster"/>
       <Card.Body >
         <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.description}</Card.Text>
+        <Card.Text className="movie-text">{movie.description}</Card.Text>
         <Button onClick={() => onMovieClick(movie)} variant="danger" >Open</Button>
       </Card.Body>
     </Card>
     );
   }
 }
+
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
