@@ -8,13 +8,13 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 
 
-
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(username, password)
     /* Send a request to the server for authentication */
     axios.post("https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/login", {  
     /*  axios.post ("http://localhost:8080/login", { */
@@ -30,6 +30,7 @@ export function LoginView(props) {
       console.log("User with such characteristics not found")
       console.log('User JSON: ' +username);
       console.log('Pass JSON: ' +password);
+      console.log(e);
     })
   };
 
