@@ -26455,7 +26455,7 @@ try {
       this.getMovies(authData.token);
     }
     getMovies(token) {
-      _axiosDefault.default.get('https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/movies', {
+      _axiosDefault.default.get('https://api90smovies.herokuapp.com/movies', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -30422,22 +30422,40 @@ try {
     _s();
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
-    const handleSubmit = e => {
+    // const handleSubmit = (e) => {
+    // e.preventDefault();
+    // console.log(username, password)
+    // /* Send a request to the server for authentication */
+    // axios.post("https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/login", {
+    // /*  axios.post ("http://localhost:8080/login", { */
+    // userName: username,
+    // password: password
+    // })
+    // .then(response => {
+    // const data = response.data;
+    // console.log(data);
+    // props.onLoggedIn(data);
+    // })
+    // .catch(e => {
+    // console.log("User with such characteristics not found")
+    // console.log('User JSON: ' +username);
+    // console.log('Pass JSON: ' +password);
+    // console.log(e);
+    // })
+    // };
+    const handleSubmit = async e => {
       e.preventDefault();
-      /*Send a request to the server for authentication*/
-      _axiosDefault.default.post("https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/login", {
-        /*axios.post ("http://localhost:8080/login", {*/
-        userName: username,
-        password: password
-      }).then(response => {
-        const data = response.data;
-        console.log(data);
-        props.onLoggedIn(data);
-      }).catch(e => {
-        console.log("User with such characteristics not found");
-        console.log('User JSON: ' + username);
-        console.log('Pass JSON: ' + password);
-      });
+      console.log(username, password);
+      / Send a request to the server for authentication /;
+      try {
+        const {data} = await _axiosDefault.default.post("https://api90smovies.herokuapp.com/login", {
+          userName: username,
+          password: password
+        });
+        console.log("data", data);
+      } catch (error) {
+        console.log(error.response);
+      }
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapRowDefault.default, {
@@ -30445,21 +30463,21 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37,
+          lineNumber: 52,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39,
+          lineNumber: 54,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40,
+          lineNumber: 55,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
@@ -30467,14 +30485,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41,
+          lineNumber: 56,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42,
+          lineNumber: 57,
           columnNumber: 9
         }
       }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
@@ -30483,14 +30501,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43,
+          lineNumber: 58,
           columnNumber: 9
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46,
+          lineNumber: 61,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
@@ -30498,14 +30516,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47,
+          lineNumber: 62,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48,
+          lineNumber: 63,
           columnNumber: 9
         }
       }, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
@@ -30514,14 +30532,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49,
+          lineNumber: 64,
           columnNumber: 9
         }
       }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52,
+          lineNumber: 67,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
@@ -30531,7 +30549,7 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53,
+          lineNumber: 68,
           columnNumber: 7
         }
       }, "Submit"))))
