@@ -12,27 +12,41 @@ export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(username, password)
+  //   /* Send a request to the server for authentication */
+  //   axios.post("https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/login", {  
+  //   /*  axios.post ("http://localhost:8080/login", { */
+  //     userName: username,
+  //     password: password
+  //   })
+  //   .then(response => {
+  //     const data = response.data;
+  //     console.log(data);
+  //     props.onLoggedIn(data);
+  //   })
+  //   .catch(e => {
+  //     console.log("User with such characteristics not found")
+  //     console.log('User JSON: ' +username);
+  //     console.log('Pass JSON: ' +password);
+  //     console.log(e);
+  //   })
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, password)
-    /* Send a request to the server for authentication */
-    axios.post("https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/login", {  
-    /*  axios.post ("http://localhost:8080/login", { */
-      userName: username,
-      password: password
-    })
-    .then(response => {
-      const data = response.data;
-      console.log(data);
-      props.onLoggedIn(data);
-    })
-    .catch(e => {
-      console.log("User with such characteristics not found")
-      console.log('User JSON: ' +username);
-      console.log('Pass JSON: ' +password);
-      console.log(e);
-    })
-  };
+    console.log(username, password);
+    / Send a request to the server for authentication /
+    try {
+    const {data} = await axios.post("https://api90smovies.herokuapp.com/login", {
+    userName: username,
+    password: password,
+    });
+    console.log("data", data);
+    } catch (error) {
+    console.log(error.response);
+    }}
 
   return (
     <Row className="justify-content-sm-center login-view">
