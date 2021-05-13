@@ -49,7 +49,7 @@ export class MainView extends React.Component{
   }
 
   getMovies(token) {
-    axios.get('https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/movies', {
+    axios.get('https://api90smovies.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
