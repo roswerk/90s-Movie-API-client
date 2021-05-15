@@ -12,38 +12,17 @@ export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(username, password)
-  //   /* Send a request to the server for authentication */
-  //   axios.post("https://cors-anywhere.herokuapp.com/https://api90smovies.herokuapp.com/login", {  
-  //   /*  axios.post ("http://localhost:8080/login", { */
-  //     userName: username,
-  //     password: password
-  //   })
-  //   .then(response => {
-  //     const data = response.data;
-  //     console.log(data);
-  //     props.onLoggedIn(data);
-  //   })
-  //   .catch(e => {
-  //     console.log("User with such characteristics not found")
-  //     console.log('User JSON: ' +username);
-  //     console.log('Pass JSON: ' +password);
-  //     console.log(e);
-  //   })
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, password);
-    / Send a request to the server for authentication /
+    // console.log(username, password); 
+    // Send a request to the server for authentication 
     try {
     const {data} = await axios.post("https://api90smovies.herokuapp.com/login", {
     userName: username,
     password: password,
     });
-    console.log("data", data);
+    // console.log("login-view console", data); 
+    props.onLoggedIn(data);
     } catch (error) {
     console.log(error.response);
     }}
@@ -61,7 +40,7 @@ export function LoginView(props) {
       <Col>
       <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
-        <Form.Control type="text" onChange={e => setPassword(e.target.value)} />
+        <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
       </Form.Group>
       </Col>
       <Col>
