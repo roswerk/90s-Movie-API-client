@@ -6,25 +6,27 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(username, password); 
     // Send a request to the server for authentication 
     try {
     const {data} = await axios.post("https://api90smovies.herokuapp.com/login", {
     userName: username,
-    password: password,
+    password: password
     });
-    // console.log("login-view console", data); 
+    
     props.onLoggedIn(data);
+    window.open("/", "_self");
     } catch (error) {
-    console.log(error.response);
+    console.log(error)
     }}
 
   return (
@@ -43,8 +45,13 @@ export function LoginView(props) {
         <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
       </Form.Group>
       </Col>
-      <Col>
+      <Col className="logginButton">
       <Button variant="danger" type="submit" onClick={handleSubmit}>Submit</Button>
+      </Col>
+      <Col className="logginButton">
+      <Link to={"/register"}>
+      <Button variant="light link" className="mt-5">Register</Button>
+      </Link>
       </Col>
     </Form>
     </Row>
