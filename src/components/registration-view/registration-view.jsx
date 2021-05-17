@@ -5,6 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Form } from 'react-bootstrap';
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 export function RegistrationView(props) {
@@ -13,13 +15,21 @@ export function RegistrationView(props) {
   const [ email, setEmail ] = useState('');
   const [ birthDate, setBirthDate ] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthDate);
-    props.onRegistring(
-      username && password && email && birthDate
-    );
-  };
+    // Send a request to the server for authentication 
+    try {
+      const {data} = await axios.post('https://api90smovies.herokuapp.com/users/add', {
+      userName: username,
+      password: password,
+      email: email,
+      birthDate: birthDate
+    });
+      props.onRegistring(data)
+  }catch(error) {
+    window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+      console.log('error registering the user')
+    }};
 
   return (
     <Row className = "justify-content-md-center register-view">
@@ -68,9 +78,16 @@ export function RegistrationView(props) {
         
       </Form.Group>
       </Col>
-      <Col>
-      <Button type="submit" onClick={handleSubmit} variant="danger">Submit</Button>
+      <Col className="registrationButton">
+      <Button type="submit" onClick={handleRegister} variant="danger">Submit</Button>
       </Col>
+      
+      <Col className="registrationButton">
+      <Link to={"/"}>
+      <Button variant="light link" className="mt-5">Log In</Button>
+      </Link>
+      </Col>
+      
     </Form>
     </Row>
   );
