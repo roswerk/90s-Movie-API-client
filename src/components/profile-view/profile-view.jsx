@@ -50,9 +50,9 @@ export class ProfileView extends React.Component{
   }
 
   
-    handleChange(e, favorites) {
+    handleChange(e, favoriteMovies) {
       this.setState({ [e.target.name]: e.target.value });
-      this.setState({ [favorites.target.name]: favorites.target.value });
+      this.setState({ [favoriteMovies.target.name]: favoriteMovies.target.value });
     }
   
 
@@ -61,6 +61,12 @@ export class ProfileView extends React.Component{
 
   render(){
     const { userName, email, birthDate, favoriteMovies} = this.state;
+    
+    const favoriteMovieList = this.props.movies.filter((movie => {
+      return (
+        favoriteMovies.includes(movie._id)
+      );
+    }));
 
 return(
 <Card>
@@ -84,7 +90,21 @@ return(
     <ListGroupItem> Username: <span className='text-color'>{userName}</span></ListGroupItem>
     <ListGroupItem> Email: <span className='text-color'>{email}</span></ListGroupItem>
     <ListGroupItem> Birth date: <span className='text-color'>{birthDate}</span></ListGroupItem>
-     <ListGroupItem> My Favorite Movies:  {favoriteMovies}</ListGroupItem> 
+     <ListGroupItem> My Favorite Movies:   <div>
+                    <ul>
+                      {favoriteMovieList.map(favoriteMovies => (
+                        <li key={favoriteMovies._id}>
+                          <span className='text-color'>
+                          {
+                            favoriteMovies.title
+                          }
+                          </span>
+                          {/* <Button className='primary-btn' onClick={() => this.removeFavorite(favorite)}><span className='text-color'>Remove Favorite Movie</span></Button>                            */}
+                        </li>                        
+                      ))}
+                    </ul> 
+                </div>
+     {/* {favoriteMovies}*/}</ListGroupItem>  
   </ListGroup>
     <Button variant="primary mt-5">Go somewhere</Button>
     </Card.Body>
