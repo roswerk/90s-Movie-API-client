@@ -55,9 +55,21 @@ export class ProfileView extends React.Component{
       this.setState({ [favoriteMovies.target.name]: favoriteMovies.target.value });
     }
   
+//Delete Movie from user favorite list
+removeFavorite(favorite) {   
+  axios.delete(`https://api90smovies.herokuapp.com/users/${localStorage.getItem('user')}/Movies/${favorite._id}/`, 
+   { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } 
+  }).then(response => {
+    localStorage.setItem('favoriteMovies', JSON.stringify(response.data.favoriteMovies));
+    this.getUser();
+    alert(`${favorite.title} has been removed from your Favorite list!`);
+  }).catch (err => {
+    console.log(err.response);
+    alert("Movie can't be removed")
+  });
+}
 
 
-  
 
   render(){
     const { userName, email, birthDate, favoriteMovies} = this.state;
@@ -67,6 +79,23 @@ export class ProfileView extends React.Component{
         favoriteMovies.includes(movie._id)
       );
     }));
+
+      //Delete Profile
+  const handleDelete = e => {
+    e.preventDefault();
+    axios
+      .delete(`https://api90smovies.herokuapp.com/users/delete/${userName}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      })
+      .then(response => {
+        alert("Your account has been deleted");
+        localStorage.clear();
+        window.open("/", "_self");
+      })
+      .catch(e => {
+        console.log("Error deleting your account");
+      });
+  };
 
 return(
 <Card>
@@ -90,21 +119,21 @@ return(
     <ListGroupItem> Username: <span className='text-color'>{userName}</span></ListGroupItem>
     <ListGroupItem> Email: <span className='text-color'>{email}</span></ListGroupItem>
     <ListGroupItem> Birth date: <span className='text-color'>{birthDate}</span></ListGroupItem>
-     <ListGroupItem> My Favorite Movies:   <div>
-                    <ul>
+     <ListGroupItem className="mt-5"> My Favorite Movies:   <div>
+                    <ListGroup variant="flush">
                       {favoriteMovieList.map(favoriteMovies => (
-                        <li key={favoriteMovies._id}>
+                        <ListGroup.Item key={favoriteMovies._id} >
+                          <Button onClick={() => this.removeFavorite(favoriteMovies)} variant="light"><span className="light">X</span></Button> 
                           <span className='text-color'>
                           {
                             favoriteMovies.title
                           }
                           </span>
-                          {/* <Button className='primary-btn' onClick={() => this.removeFavorite(favorite)}><span className='text-color'>Remove Favorite Movie</span></Button>                            */}
-                        </li>                        
+                                                    
+                        </ListGroup.Item>                        
                       ))}
-                    </ul> 
-                </div>
-     {/* {favoriteMovies}*/}</ListGroupItem>  
+                    </ListGroup> 
+                </div></ListGroupItem>  
   </ListGroup>
     <Button variant="primary mt-5">Go somewhere</Button>
     </Card.Body>
@@ -121,7 +150,7 @@ return(
     <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
     <ListGroupItem>Vestibulum at eros</ListGroupItem>
   </ListGroup>
-    <Button variant="primary">Go somewhere</Button>
+    <Button variant="outline-danger" className="mt-5" type='submit' onClick={handleDelete}>Delete Account</Button>
     </Card.Body>
 
 </Card>)
