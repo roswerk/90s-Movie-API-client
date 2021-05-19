@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 export class DirectorView extends React.Component{
 
   render(){
-    const {movie, director, onBackClick} = this.props;
+    const {movie, director, onBackClick} = this.props;  
 
     return(
 
@@ -35,10 +35,6 @@ export class DirectorView extends React.Component{
       <Link to={"/"}>
       <Button variant="danger link">Movies</Button>
       </Link>
-
-      {/* <Link to={`/genres/${movie.genre.name}`}>
-      <Button variant="link">Genre</Button>
-      </Link> */}
  
       <Button onClick={() => {onBackClick(null);}} className="ml-3" variant="danger">Back</Button>
       </Col>
