@@ -24,14 +24,14 @@ export function LoginView(props) {
     });
     
     props.onLoggedIn(data);
-    window.open("/", "_self");
+    // window.open("/", "_self");
+    console.log(data)
     } catch (error) {
     console.log(error)
     }}
 
   return (
     <Row className="justify-content-sm-center login-view">
-
     <Form>
     <Col>
       <Form.Group controlId="formUsername">
