@@ -5,15 +5,34 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.card-img-top {
+  height: 450px;
+}
 .poster {
-  width: 300px;
+  width: 250px;
   height: auto;
 }
+
+.registrationButton {
+  text-align: center;
+}
 .login-view {
-  margin-top: 280px;
+  margin-top: 180px;
+}
+
+.logginButton {
+  text-align: center;
 }
 
 
+.CardAchor {
+  color: #dc3545;
+}
+
+.CardAchor:hover {
+  color: #eb091f;
+}
 .my-flix {
   color: steelBlue;
 }
