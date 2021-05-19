@@ -51,7 +51,7 @@ const handleDelete = e => {
     })
     .then(response => {
       props.updateUser(userInfo);
-      alert("Profile has been Updated");
+      alert("Your information has been updated successfully");
       })
       .catch(e => {
         const errors = e.response.data.errors || [];
@@ -69,7 +69,7 @@ const handleDelete = e => {
   return (
     <Card>
        <Card.Header>
-         <Nav variant="tabs" defaultActiveKey="update">
+         <Nav variant="tabs" defaultActiveKey="/update">
            <Nav.Item>
              <Nav.Link href="/profile">Profile</Nav.Link>
            </Nav.Item>
