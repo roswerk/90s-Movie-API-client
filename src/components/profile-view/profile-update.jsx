@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
-import PropTypes from "prop-types";
 import Form from  "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Nav from "react-bootstrap/Nav";
+import "./profile-view.scss"
 
 
 export function ProfileUpdate(props) {
@@ -64,17 +64,15 @@ const handleDelete = e => {
       });
   };
 
-
-
   return (
     <Card>
        <Card.Header>
          <Nav variant="tabs" defaultActiveKey="/update">
            <Nav.Item>
-             <Nav.Link href="/profile">Profile</Nav.Link>
+             <Nav.Link href="/profile" className="CardAchor">Profile</Nav.Link>
            </Nav.Item>
            <Nav.Item>
-             <Nav.Link href="/update">Edit profile</Nav.Link>
+             <Nav.Link href="/update" className="CardAchor">Edit profile</Nav.Link>
            </Nav.Item>
          </Nav>
        </Card.Header>
