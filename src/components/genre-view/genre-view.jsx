@@ -25,21 +25,12 @@ export class GenreView extends React.Component{
         <span className="label">Description: </span>
         <span className="value">{genre.description}</span>
       </div>
-      {/* <div className="Director-DOB">
-        <span className="label">Related Movies: </span>
-        <span className="value">{director.birthDate}</span>
-      </div> */}
          
  <Row className="mt-3">
    <Col>
       <Link to={"/"}>
       <Button variant="danger link">Movies</Button>
       </Link>
-
-      {/* <Link to={`/genres/${movie.genre.name}`}>
-      <Button variant="link">Genre</Button>
-      </Link> */}
- 
       <Button onClick={() => {onBackClick(null);}} className="ml-3" variant="danger">Back</Button>
       </Col>
       </Row>
