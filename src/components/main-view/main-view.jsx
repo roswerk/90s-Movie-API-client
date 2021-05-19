@@ -3,6 +3,7 @@ import axios from "axios";
 import "./main-view.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -92,17 +93,17 @@ user: null
 }
 
 updateUser(data) {
-this.setState({
-userInfo: data
-});
-localStorage.setItem('user', data.userName);
-localStorage.setItem('email', data.email);
-localStorage.setItem('birthDate', data.birthDate);
+  this.setState({
+    userInfo: data
+  });
+  localStorage.setItem('user', data.userName);
+  localStorage.setItem('email', data.email);
+  localStorage.setItem('birthDate', data.birthDate);
 }
 
 
 render() {
-const {movies, user, userInfo} = this.state;
+const {movies, user, newUser, directors, genres, userInfo} = this.state;
 
 return (
 <Router>
@@ -110,8 +111,7 @@ return (
 
     <Route exact path="/" render={()=> {
 
-      if (!user){ return
-      <Col>
+      if (!user){ return <Col>
       <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
         </Col>}
 
@@ -129,8 +129,7 @@ return (
         }} />
 
         <Route exact path="/register" render={()=> {
-          return
-          <Col>
+          return <Col>
           <RegistrationView />
           </Col>
           }} />
@@ -172,39 +171,37 @@ return (
                 }
                 } />
 
-                <Route path='/profile' render={({history})=> {
+<Route path='/profile' render={({history}) => {
 
                   if (!user) return (
                   <Col md={6}>
-                  <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
-                    </Col>)
+                    <LoginView onLoggedIn = {user => this.onLoggedIn(user)} />
+                  </Col>)
 
-                    if (movies.length === 0) return
-                    <div className='main-view' />;
+                  if (movies.length === 0) return <div className='main-view' />;
 
-                    return (
+                  return (
                     <Container>
-                      <NavbarView />
-                      <Col md={12}>
-                      <ProfileView userInfo={userInfo} movies={movies} onBackClick={()=> history.goBack()} />
-                        </Col>
-                    </Container>)
-                    }} />
+                      <NavbarView/>
+                  <Col md={12}>
+                    <ProfileView userInfo={userInfo} movies={movies} onBackClick={() => history.goBack()} />
+                  </Col>
+                  </Container>)
+                }} />
 
-                    <Route path='/update' render={({ history })=> {
+<Route path='/update' render={({ history }) => {
+           
+                  return (
+                    <Container>
+                    <NavbarView/>
+                  <Col md={12}>
+                    <ProfileUpdate userInfo={userInfo} user={user} updateUser={data => this.updateUser(data)} onBackClick={() => history.goBack()} />
+                  </Col>
+                  </Container>)
 
-                      return (
-                      <Container>
-                        <NavbarView />
-                        <Col md={12}>
-                        <ProfileUpdate userInfo={userInfo} user={user} updateUser={data=> this.updateUser(data)}
-                          onBackClick={() => history.goBack()} />
-                          </Col>
-                      </Container>)
+                }} />
 
-                      }} />
-
-  </Row>
+</Row>
 </Router>
 )
 }
