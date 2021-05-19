@@ -5,11 +5,8 @@ import Button from "react-bootstrap/Button"
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import axios from 'axios';
+import "./profile-view.scss"
 
-// Modal buttons
-let editProfile =  function(){
-  let defaultKey = document.getElementsByTagName("Nav")[0].toggleAttribute("edit")
-}
 
 export class ProfileView extends React.Component{
   constructor(){
@@ -22,9 +19,7 @@ export class ProfileView extends React.Component{
       favoriteMovies: []
     };
   }
-
   
-
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
@@ -104,10 +99,10 @@ return(
   <Card.Header>
     <Nav variant="tabs" defaultActiveKey="/profile">
       <Nav.Item>
-        <Nav.Link href="/profile">Profile</Nav.Link>
+        <Nav.Link href="/profile" className="CardAchor">Profile</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/update" onClick={editProfile}>Edit profile</Nav.Link>
+        <Nav.Link href="/update" className="CardAchor">Edit profile</Nav.Link>
       </Nav.Item>
     </Nav>
   </Card.Header>
