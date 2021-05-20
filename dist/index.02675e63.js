@@ -26799,7 +26799,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5J4Id","../../../../../../../../../../.nvm/versions/node/v14.16.0/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"678wd","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","axios":"7rA65","./main-view.scss":"3X8QW","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-router-dom":"1PMSK","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../navbar-view/navbar-view":"jhsAm","../profile-view/profile-view":"3CncI","react-bootstrap/Container":"3Mt3t","../profile-view/profile-update":"4mFV7","react-bootstrap/Button":"1ru0l"}],"5J4Id":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5J4Id","../../../../../../../../../../.nvm/versions/node/v14.16.0/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"678wd","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","axios":"7rA65","./main-view.scss":"3X8QW","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap/Button":"1ru0l","react-router-dom":"1PMSK","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../navbar-view/navbar-view":"jhsAm","../profile-view/profile-view":"3CncI","react-bootstrap/Container":"3Mt3t","../profile-view/profile-update":"4mFV7"}],"5J4Id":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -37451,254 +37451,309 @@ try {
   _parcelHelpers.export(exports, "RegistrationView", function () {
     return RegistrationView;
   });
-  var _react = require('react');
+  var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _propTypes = require("prop-types");
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   require("./registration-view.scss");
-  require("react-bootstrap/Row");
-  require("react-bootstrap/Col");
   var _reactBootstrapButton = require("react-bootstrap/Button");
   var _reactBootstrapButtonDefault = _parcelHelpers.interopDefault(_reactBootstrapButton);
-  var _reactBootstrap = require('react-bootstrap');
+  var _reactBootstrap = require("react-bootstrap");
   var _axios = require("axios");
   var _axiosDefault = _parcelHelpers.interopDefault(_axios);
   var _reactRouterDom = require("react-router-dom");
-  var _reactBootstrapContainer = require("react-bootstrap/Container");
-  var _reactBootstrapContainerDefault = _parcelHelpers.interopDefault(_reactBootstrapContainer);
   var _jsxFileName = "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/registration-view/registration-view.jsx", _s = $RefreshSig$();
   function RegistrationView(props) {
     _s();
-    const [username, setUsername] = _react.useState('');
-    const [password, setPassword] = _react.useState('');
-    const [email, setEmail] = _react.useState('');
-    const [birthDate, setBirthDate] = _react.useState('');
+    const [username, setUsername] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
+    const [email, setEmail] = _react.useState("");
+    const [birthDate, setBirthDate] = _react.useState("");
+    const [usernameError, setUsernameError] = _react.useState({});
+    const [passwordError, setPasswordError] = _react.useState({});
+    const [emailError, setEmailError] = _react.useState({});
     const handleRegister = async e => {
       e.preventDefault();
-      try {
-        const {data} = await _axiosDefault.default.post('https://api90smovies.herokuapp.com/users/add', {
-          userName: username,
-          password: password,
-          email: email,
-          birthDate: birthDate
-        });
-        props.onRegistring(data);
-      } catch (error) {
-        window.open('/', '_self');
-        console.log('error registering the user');
+      const isValid = formValidation();
+      if (isValid) {
+        try {
+          const {data} = await _axiosDefault.default.post("https://api90smovies.herokuapp.com/users/add", {
+            userName: username,
+            password: password,
+            email: email,
+            birthDate: birthDate
+          });
+          props.onRegistring(data);
+          window.open("/", "_self");
+        } catch (error) {
+          window.open("/", "_self");
+          console.log("error registering the user");
+        }
       }
     };
+    const formValidation = () => {
+      const usernameError = {};
+      const passwordError = {};
+      const emailError = {};
+      let isValid = true;
+      if (username.trim().length < 5) {
+        usernameError.usernameShort = "Username must be at least 5 characters";
+        isValid = false;
+      }
+      if (password.trim().length === 0) {
+        passwordError.passwordMissing = "Password is required";
+        isValid = false;
+      }
+      if (password.trim().length < 6) {
+        passwordError.passwordMissing = "Password must be at least 6 characters";
+        isValid = false;
+      }
+      if (!email.includes(".") && !email.includes("@")) {
+        emailError.notEmail = "Enter a valid email address";
+        isValid = false;
+      }
+      setUsernameError(usernameError);
+      setPasswordError(passwordError);
+      setEmailError(emailError);
+      return isValid;
+    };
     return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapContainerDefault.default, {
+      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
+        className: "log-reg-view",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34,
-          columnNumber: 3
+          lineNumber: 78,
+          columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
         className: "justify-content-md-center register-view",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35,
-          columnNumber: 3
+          lineNumber: 79,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36,
-          columnNumber: 3
+          lineNumber: 80,
+          columnNumber: 9
         }
-      }, "Create a free account")), /*#__PURE__*/_reactDefault.default.createElement("br", {
+      }, "Create a free account")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "registerUsername",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38,
-          columnNumber: 3
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form, {
-        className: "registration-form",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 39,
-          columnNumber: 3
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicUsername",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 40,
-          columnNumber: 5
+          lineNumber: 83,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41,
-          columnNumber: 7
+          lineNumber: 84,
+          columnNumber: 9
         }
-      }, "Pick a Username: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        className: "form-field",
+      }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        placeholder: "Username",
-        required: true,
-        value: username,
+        placeholder: "Enter a username of your choice",
         onChange: e => setUsername(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42,
-          columnNumber: 7
+          lineNumber: 85,
+          columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Text, {
-        className: "text-muted",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50,
-          columnNumber: 7
+          lineNumber: 87,
+          columnNumber: 11
         }
-      }, "Must be alphanumeric and contain at least 5 characters")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicPassword",
+      }, "*required")), Object.keys(usernameError).map(key => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            id: "alertText",
+            key: key,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 92,
+              columnNumber: 7
+            }
+          }, usernameError[key])
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "registerPassword",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56,
-          columnNumber: 5
+          lineNumber: 96,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57,
-          columnNumber: 7
+          lineNumber: 97,
+          columnNumber: 9
         }
-      }, "Choose a Password: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        className: "form-field",
-        type: "text",
-        placeholder: "Password",
-        required: true,
-        "value-": password,
+      }, "Password:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "password",
+        placeholder: "Enter a password of your choice",
         onChange: e => setPassword(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58,
-          columnNumber: 7
+          lineNumber: 98,
+          columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Text, {
-        className: "text-muted",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 66,
-          columnNumber: 7
-        }
-      }, "Password is required.")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicEmail",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 72,
-          columnNumber: 5
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 73,
-          columnNumber: 7
-        }
-      }, "Enter Email Address: "), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        className: "form-field",
-        type: "text",
-        placeholder: "example@gmail.com",
-        required: true,
-        value: email,
-        onChange: e => setEmail(e.target.value),
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 74,
-          columnNumber: 7
-        }
-      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Text, {
-        className: "text-muted",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 82,
-          columnNumber: 7
-        }
-      }, "Must be a valid email address.")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBasicBirthday",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 88,
-          columnNumber: 5
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 89,
-          columnNumber: 7
-        }
-      }, "Enter Date of Birth:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-        className: "form-field",
-        type: "date",
-        placeholder: "MM/DD/YYYY",
-        required: true,
-        value: birthDate,
-        onChange: e => setBirthDate(e.target.value),
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 90,
-          columnNumber: 7
-        }
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-        type: "submit",
-        variant: "danger",
-        onClick: handleRegister,
         __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 100,
-          columnNumber: 5
+          columnNumber: 11
         }
-      }, "Create Account"), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+      }, "*required")), Object.keys(passwordError).map(key => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            id: "alertText",
+            key: key,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 105,
+              columnNumber: 7
+            }
+          }, passwordError[key])
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "registerEmail",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 109,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 110,
+          columnNumber: 9
+        }
+      }, "Email address:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "email",
+        placeholder: "Enter valid email please",
+        onChange: e => setEmail(e.target.value),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 111,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Text, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 112,
+          columnNumber: 11
+        }
+      }, "*required")), Object.keys(emailError).map(key => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            id: "alertText",
+            key: key,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 117,
+              columnNumber: 7
+            }
+          }, emailError[key], " ")
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+        controlId: "registerBirthday",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 121,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Label, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 122,
+          columnNumber: 9
+        }
+      }, "Birthday:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Form.Control, {
+        type: "date",
+        placeholder: "Date of Birth",
+        onChange: e => setBirthDate(e.target.value),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 123,
+          columnNumber: 9
+        }
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        variant: "danger",
+        type: "submit",
+        onClick: handleRegister,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 126,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 126,
+          columnNumber: 71
+        }
+      }, "Register")), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
         to: `/`,
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106,
-          columnNumber: 5
+          lineNumber: 127,
+          columnNumber: 7
         }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
-        variant: "light ml-3",
+      }, " ", /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+        variant: "light",
+        type: "submit",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107,
-          columnNumber: 7
+          lineNumber: 127,
+          columnNumber: 23
         }
-      }, "I already have an account"))))
+      }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 127,
+          columnNumber: 61
+        }
+      }, "I already have an Account"))))
     );
   }
-  _s(RegistrationView, "52SvdCOg8syPmShbMukhlBY1TOc=");
+  _s(RegistrationView, "aBVRNzBaJRypGfw4DW0TnMCaBCs=");
   _c = RegistrationView;
-  ;
   RegistrationView.propTypes = {
-    username: _propTypesDefault.default.string,
-    password: _propTypesDefault.default.string,
-    email: _propTypesDefault.default.string,
-    birthDate: _propTypesDefault.default.string
+    register: _propTypesDefault.default.shape({
+      username: _propTypesDefault.default.string.isRequired,
+      password: _propTypesDefault.default.string.isRequired,
+      email: _propTypesDefault.default.string.isRequired
+    }),
+    onRegister: _propTypesDefault.default.func
   };
   var _c;
   $RefreshReg$(_c, "RegistrationView");
@@ -37708,7 +37763,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap/Button":"1ru0l","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"5J4Id","../../../../../../../../../../.nvm/versions/node/v14.16.0/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"678wd","axios":"7rA65","react-router-dom":"1PMSK","react-bootstrap/Container":"3Mt3t"}],"22HWg":[function() {},{}],"4n7hB":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"22HWg","react-bootstrap/Button":"1ru0l","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"5J4Id","../../../../../../../../../../.nvm/versions/node/v14.16.0/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"678wd","axios":"7rA65","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"4n7hB":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -47574,7 +47629,7 @@ try {
   _parcelHelpers.export(exports, "ProfileUpdate", function () {
     return ProfileUpdate;
   });
-  var _react = require('react');
+  var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   var _reactBootstrapForm = require("react-bootstrap/Form");
   var _reactBootstrapFormDefault = _parcelHelpers.interopDefault(_reactBootstrapForm);
@@ -47592,15 +47647,19 @@ try {
   var _jsxFileName = "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/profile-view/profile-update.jsx", _s = $RefreshSig$();
   function ProfileUpdate(props) {
     _s();
-    const [username, setUsername] = _react.useState('');
-    const [password, setPassword] = _react.useState('');
-    const [email, setEmail] = _react.useState('');
-    const [birthday, setBirthday] = _react.useState('');
-    const accessUsername = localStorage.getItem('user');
+    const [username, setUsername] = _react.useState("");
+    const [password, setPassword] = _react.useState("");
+    const [email, setEmail] = _react.useState("");
+    const [birthday, setBirthday] = _react.useState("");
+    const accessUsername = localStorage.getItem("user");
+    const accessEmail = localStorage.getItem("email");
+    const [usernameError, setUsernameError] = _react.useState({});
+    const [passwordError, setPasswordError] = _react.useState({});
+    const [emailError, setEmailError] = _react.useState({});
     // //Delete Profile
     const handleDelete = e => {
       e.preventDefault();
-      _axiosDefault.default.delete(`https://api90smovies.herokuapp.com/users/delete/${username}`, {
+      _axiosDefault.default.delete(`https://api90smovies.herokuapp.com/users/delete/${accessUsername}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
@@ -47615,44 +47674,74 @@ try {
     // Update profile
     const handleUpdate = e => {
       e.preventDefault();
+      const isValid = formValidation();
       const userInfo = {
         userName: username,
         password: password,
         email: email,
         birthDate: birthday
       };
-      _axiosDefault.default.put(`https://api90smovies.herokuapp.com/user/${accessUsername}`, {
-        userName: username,
-        password: password,
-        email: email,
-        birthDate: birthday
-      }).then(response => {
-        props.updateUser(userInfo);
-        alert("Your information has been updated successfully");
-      }).catch(e => {
-        const errors = e.response.data.errors || [];
-        let errorMessage = "";
-        errors.forEach(err => {
-          errorMessage += err.msg;
+      if (isValid) {
+        _axiosDefault.default.put(`https://api90smovies.herokuapp.com/user/${accessUsername}`, {
+          userName: username,
+          password: password,
+          email: email,
+          birthDate: birthday
+        }).then(response => {
+          props.updateUser(userInfo);
+          alert("Your information has been updated successfully");
+          window.open("/profile", "_self");
+        }).catch(e => {
+          const errors = e.response.data.errors || [];
+          let errorMessage = "";
+          errors.forEach(err => {
+            errorMessage += err.msg;
+          });
+          alert(`There was an error ${errorMessage}`);
+          console.log(`Error updating the user info.`);
         });
-        alert(`There was an error ${errorMessage}`);
-        console.log(`Error updating the user info.`);
-      });
+      }
+    };
+    const formValidation = () => {
+      const usernameError = {};
+      const passwordError = {};
+      const emailError = {};
+      let isValid = true;
+      if (username.trim().length < 5) {
+        usernameError.usernameShort = "Username must be at least 5 characters";
+        isValid = false;
+      }
+      if (password.trim().length === 0) {
+        passwordError.passwordMissing = "Password is required";
+        isValid = false;
+      }
+      if (password.trim().length < 6) {
+        passwordError.passwordMissing = "Password must be at least 6 characters";
+        isValid = false;
+      }
+      if (!email.includes(".") && !email.includes("@")) {
+        emailError.notEmail = "Enter a valid email address";
+        isValid = false;
+      }
+      setUsernameError(usernameError);
+      setPasswordError(passwordError);
+      setEmailError(emailError);
+      return isValid;
     };
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68,
-          columnNumber: 5
+          lineNumber: 110,
+          columnNumber: 1
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Header, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69,
-          columnNumber: 8
+          lineNumber: 111,
+          columnNumber: 3
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapNavDefault.default, {
         variant: "tabs",
@@ -47660,15 +47749,15 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 70,
-          columnNumber: 10
+          lineNumber: 112,
+          columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapNavDefault.default.Item, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71,
-          columnNumber: 12
+          lineNumber: 113,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapNavDefault.default.Link, {
         href: "/profile",
@@ -47676,15 +47765,15 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72,
-          columnNumber: 14
+          lineNumber: 114,
+          columnNumber: 9
         }
       }, "Profile")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapNavDefault.default.Item, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74,
-          columnNumber: 12
+          lineNumber: 116,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapNavDefault.default.Link, {
         href: "/update",
@@ -47692,128 +47781,188 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 75,
-          columnNumber: 14
+          lineNumber: 117,
+          columnNumber: 9
         }
       }, "Edit profile")))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
         className: "editProfile",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80,
-          columnNumber: 10
+          lineNumber: 122,
+          columnNumber: 3
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Title, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81,
-          columnNumber: 10
+          lineNumber: 123,
+          columnNumber: 5
         }
       }, "Edit Account"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 82,
-          columnNumber: 8
+          lineNumber: 124,
+          columnNumber: 5
         }
       }, "Here you can update your details or delete your account. But trust us, you wont want to delete it 😌"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapListGroupDefault.default, {
         className: "list-group-flush mt-4",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86,
-          columnNumber: 10
+          lineNumber: 128,
+          columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formUsername",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87,
-          columnNumber: 10
+          lineNumber: 129,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88,
-          columnNumber: 20
+          lineNumber: 130,
+          columnNumber: 9
         }
       }, "Username"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "text",
-        value: username,
+        placeholder: accessUsername,
         onChange: e => setUsername(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89,
-          columnNumber: 20
+          lineNumber: 131,
+          columnNumber: 9
         }
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Text, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 132,
+          columnNumber: 11
+        }
+      }, "*required")), Object.keys(usernameError).map(key => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            id: "alertText",
+            key: key,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 137,
+              columnNumber: 7
+            }
+          }, usernameError[key])
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formPassword",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92,
-          columnNumber: 18
+          lineNumber: 142,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93,
-          columnNumber: 20
+          lineNumber: 143,
+          columnNumber: 9
         }
       }, "Password"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "password",
-        value: password,
+        placeholder: "Enter a new password",
         onChange: e => setPassword(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94,
-          columnNumber: 20
+          lineNumber: 144,
+          columnNumber: 9
         }
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Text, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 145,
+          columnNumber: 11
+        }
+      }, "*required")), Object.keys(passwordError).map(key => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            id: "alertText",
+            key: key,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 150,
+              columnNumber: 7
+            }
+          }, passwordError[key])
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formEmail",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97,
-          columnNumber: 11
+          lineNumber: 155,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98,
-          columnNumber: 20
+          lineNumber: 156,
+          columnNumber: 9
         }
       }, "Email"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "email",
-        value: email,
+        placeholder: accessEmail,
         onChange: e => setEmail(e.target.value),
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99,
-          columnNumber: 20
+          lineNumber: 157,
+          columnNumber: 9
         }
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Text, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 158,
+          columnNumber: 11
+        }
+      }, "*required")), Object.keys(emailError).map(key => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            id: "alertText",
+            key: key,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 163,
+              columnNumber: 7
+            }
+          }, emailError[key], " ")
+        );
+      }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Group, {
         controlId: "formBirthday",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 102,
-          columnNumber: 10
+          lineNumber: 168,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Label, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103,
-          columnNumber: 20
+          lineNumber: 169,
+          columnNumber: 9
         }
       }, "Birthday"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "date",
@@ -47822,8 +47971,8 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104,
-          columnNumber: 20
+          lineNumber: 170,
+          columnNumber: 9
         }
       })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "danger",
@@ -47832,16 +47981,16 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107,
-          columnNumber: 10
+          lineNumber: 173,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("span", {
         className: "text-color",
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107,
-          columnNumber: 72
+          lineNumber: 173,
+          columnNumber: 69
         }
       }, "Update"), " ")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "outline-danger",
@@ -47851,13 +48000,13 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110,
-          columnNumber: 8
+          lineNumber: 176,
+          columnNumber: 5
         }
       }, "Delete Account")))
     );
   }
-  _s(ProfileUpdate, "tdA1KK8yaZidqYo0wscqshHt/KE=");
+  _s(ProfileUpdate, "jCPcO1VOFS64zxuNNZZTxAl1HvI=");
   _c = ProfileUpdate;
   ;
   var _c;
