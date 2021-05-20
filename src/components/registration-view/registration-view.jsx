@@ -1,170 +1,143 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import "./registration-view.scss";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { Form } from 'react-bootstrap';
+import {Form} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import Container from "react-bootstrap/Container"
+
 
 export function RegistrationView(props) {
-const [ username, setUsername ] = useState('');
-const [ password, setPassword ] = useState('');
-const [ email, setEmail ] = useState('');
-const [ birthDate, setBirthDate ] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthDate, setBirthDate] = useState("");
 
-const handleRegister = async (e) => {
-e.preventDefault();
-try {
-const {data} = await axios.post('https://api90smovies.herokuapp.com/users/add', {
-userName: username,
-password: password,
-email: email,
-birthDate: birthDate
-});
-props.onRegistring(data)
-}catch(error) {
-window.open('/', '_self');
-console.log('error registering the user')
-}};
-
-return (
-  <Container>
-  <div className="justify-content-md-center register-view">
-  <h2>Create a free account</h2>
-  </div>
-  <br />
-  <Form className="registration-form">
-    <Form.Group controlId="formBasicUsername">
-      <Form.Label>Pick a Username: </Form.Label>
-      <Form.Control 
-        className="form-field"
-        type="text" 
-        placeholder="Username" 
-        required
-        value={username} 
-        onChange={(e) => setUsername(e.target.value)} 
-      />
-      <Form.Text 
-        className="text-muted"
-        >Must be alphanumeric and contain at least 5 characters
-      </Form.Text>
-    </Form.Group>
-
-    <Form.Group controlId="formBasicPassword">
-      <Form.Label>Choose a Password: </Form.Label>
-      <Form.Control 
-        className="form-field"
-        type="text" 
-        placeholder="Password" 
-        required
-        value-={password} 
-        onChange={(e) => setPassword(e.target.value)} 
-      />
-      <Form.Text 
-        className="text-muted"
-      >Password is required.
-      </Form.Text>
-    </Form.Group>
-
-    <Form.Group controlId="formBasicEmail">
-      <Form.Label>Enter Email Address: </Form.Label>
-      <Form.Control 
-        className="form-field"
-        type="text" 
-        placeholder="example@gmail.com" 
-        required
-        value={email} 
-        onChange={(e) => setEmail(e.target.value)} 
-      />
-      <Form.Text 
-        className="text-muted"
-      >Must be a valid email address.
-      </Form.Text>
-    </Form.Group>
-
-    <Form.Group controlId="formBasicBirthday">
-      <Form.Label>Enter Date of Birth:</Form.Label>
-      <Form.Control 
-        className="form-field"
-        type="date" 
-        placeholder="MM/DD/YYYY" 
-        required
-        value={birthDate} 
-        onChange={(e) => setBirthDate(e.target.value)} 
-      />
-    </Form.Group>
-
-    <Button type="submit" 
-            variant="danger" 
-            onClick={handleRegister}>
-      Create Account
-    </Button>
-
-    <Link to={`/`}>
-      <Button 
-        variant="light ml-3">
-        I already have an account</Button>
-    </Link>
-
-  </Form>
-</Container>
+  const [usernameError, setUsernameError] = useState({});
+  const [passwordError, setPasswordError] = useState({});
+  const [emailError, setEmailError] = useState({});
 
 
 
-// <Row className="justify-content-md-center register-view">
-//   <Form>
-//     <Col>
-//     <Form.Group as={Row}>
-//       <Form.Label>
-//         Username:
-//       </Form.Label>
-//       <Form.Control type="text" value={username} onChange={e=> setUsername(e.target.value)} />
-//     </Form.Group>
-//     </Col>
-//     <Col>
-//     <Form.Group as={Row}>
-//       <Form.Label>
-//         Password:
-//       </Form.Label>
-//       <Form.Control type="password" value={password} onChange={e=> setPassword(e.target.value)} />
-//     </Form.Group>
-//     </Col>
-//     <Col>
-//     <Form.Group as={Row}>
-//       <Form.Label>
-//         Email:
-//       </Form.Label>
-//       <Form.Control type="text" value={email} onChange={e=> setEmail(e.target.value)} />
-//     </Form.Group>
-//     </Col>
-//     <Col>
-//     <Form.Group as={Row}>
-//       <Form.Label>
-//         Date of Birth:
-//       </Form.Label>
-//       <Form.Control type="text" value={birthDate} onChange={e=> setBirthDate(e.target.value)} />
-//     </Form.Group>
-//     </Col>
-//     <Col className="registrationButton">
-//     <Button type="submit" onClick={handleRegister} variant="danger">Submit</Button>
-//     </Col>
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const isValid = formValidation();
+    if (isValid) {
+      try {
+        const {
+          data
+        } = await axios.post("https://api90smovies.herokuapp.com/users/add", {
+          userName: username,
+          password: password,
+          email: email,
+          birthDate: birthDate
+        });
+        props.onRegistring(data)
+        window.open("/", "_self");
+      } catch (error) {
+        window.open("/", "_self");
+        console.log("error registering the user")
+      }
+    }
+  };
 
-//     <Col className="registrationButton">
-//     <Link to={"/"}> <Button variant="light link" className="mt-5">Log In</Button>
-//     </Link>
-//     </Col>
+  const formValidation = () => {
+    const usernameError = {};
+    const passwordError = {};
+    const emailError = {};
+    let isValid = true;
 
-//   </Form>
-// </Row>
-);
-};
+    if (username.trim().length < 5) {
+      usernameError.usernameShort = "Username must be at least 5 characters";
+      isValid = false;
+    }
 
-RegistrationView.propTypes = {
-username: PropTypes.string,
-password: PropTypes.string,
-email: PropTypes.string,
-birthDate: PropTypes.string
+    if (password.trim().length === 0) {
+      passwordError.passwordMissing = "Password is required";
+      isValid = false;
+    }
+
+    if (password.trim().length < 6) {
+      passwordError.passwordMissing = "Password must be at least 6 characters";
+      isValid = false;
+    }
+
+    if (!email.includes(".") && !email.includes("@")) {
+      emailError.notEmail = "Enter a valid email address";
+      isValid = false;
+    }
+
+    setUsernameError(usernameError);
+    setPasswordError(passwordError);
+    setEmailError(emailError);
+    return isValid;
+  };
+
+
+  return (
+    <Form className="log-reg-view">
+      <div className="justify-content-md-center register-view">
+        <h2>Create a free account</h2>
+      </div>
+
+      <Form.Group controlId="registerUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control type="text" placeholder="Enter a username of your choice" onChange={ e=>
+          setUsername(e.target.value)} />
+          <Form.Text className="text-muted">*required</Form.Text>
+      </Form.Group>
+
+      {Object.keys(usernameError).map((key) => {
+      return (
+      <div id="alertText" key={key}>{usernameError[key]}</div>
+      );
+      })}
+
+      <Form.Group controlId="registerPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control type="password" placeholder="Enter a password of your choice" onChange={e=>
+          setPassword(e.target.value)} />
+          <Form.Text className="text-muted">*required</Form.Text>
+      </Form.Group>
+
+      {Object.keys(passwordError).map((key) => {
+      return (
+      <div id="alertText" key={key}>{passwordError[key]}</div>
+      );
+      })}
+
+      <Form.Group controlId="registerEmail">
+        <Form.Label>Email address:</Form.Label>
+        <Form.Control type="email" placeholder="Enter valid email please" onChange={e=> setEmail(e.target.value)} />
+          <Form.Text className="text-muted">*required</Form.Text>
+      </Form.Group>
+
+      {Object.keys(emailError).map((key) => {
+      return (
+      <div id="alertText" key={key}>{emailError[key]} </div>
+      );
+      })}
+
+      <Form.Group controlId="registerBirthday">
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control type="date" placeholder="Date of Birth" onChange={e=> setBirthDate(e.target.value)} />
+      </Form.Group>
+
+      <Button variant="danger" type="submit" onClick={handleRegister}><span
+          className="text-color">Register</span></Button>
+      <Link to={`/`}> <Button variant="light" type="submit"><span className="text-color">I already have an
+        Account</span></Button>
+      </Link>
+    </Form>
+    
+  );
 }
+
+RegistrationView.propTypes ={
+  register: PropTypes.shape ({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+    }),
+  onRegister: PropTypes.func,
+};
