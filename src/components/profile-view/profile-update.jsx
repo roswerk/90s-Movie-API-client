@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
@@ -9,12 +9,12 @@ import "./profile-view.scss";
 
 
 export function ProfileUpdate(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const accessUsername = localStorage.getItem('user');
-  const accessEmail = localStorage.getItem('email');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const accessUsername = localStorage.getItem("user");
+  const accessEmail = localStorage.getItem("email");
 
   const [usernameError, setUsernameError] = useState({});
   const [passwordError, setPasswordError] = useState({});
@@ -126,10 +126,10 @@ return (
     </Card.Text>
 
     <ListGroup className="list-group-flush mt-4">
-      <Form.Group controlId='formUsername'>
+      <Form.Group controlId="formUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control type="text" placeholder={accessUsername} onChange={e=> setUsername(e.target.value)} />
-          <Form.Text className="text-muted">*required</Form.Text>
+          <Form.Text>*required</Form.Text>
       </Form.Group>
 
       {Object.keys(usernameError).map((key) => {
@@ -139,10 +139,10 @@ return (
       })}
 
 
-      <Form.Group controlId='formPassword'>
+      <Form.Group controlId="formPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Enter a new password" onChange={e=> setPassword(e.target.value)} />
-          <Form.Text className="text-muted">*required</Form.Text>
+          <Form.Text>*required</Form.Text>
       </Form.Group>
 
       {Object.keys(passwordError).map((key) => {
@@ -152,10 +152,10 @@ return (
       })}
 
 
-      <Form.Group controlId='formEmail'>
+      <Form.Group controlId="formEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" placeholder={accessEmail} onChange={e=> setEmail(e.target.value)} />
-          <Form.Text className="text-muted">*required</Form.Text>
+          <Form.Text>*required</Form.Text>
       </Form.Group>
 
       {Object.keys(emailError).map((key) => {
@@ -165,15 +165,15 @@ return (
       })}
 
 
-      <Form.Group controlId='formBirthday'>
+      <Form.Group controlId="formBirthday">
         <Form.Label>Birthday</Form.Label>
-        <Form.Control type='date' value={birthday} onChange={e=> setBirthday(e.target.value)} />
+        <Form.Control type="date" value={birthday} onChange={e=> setBirthday(e.target.value)} />
       </Form.Group>
 
-      <Button variant='danger' type='submit' onClick={handleUpdate}><span className='text-color'>Update</span> </Button>
+      <Button variant="danger" type="submit" onClick={handleUpdate}><span className="text-color">Update</span> </Button>
 
     </ListGroup>
-    <Button variant="outline-danger" className="mt-5" type='submit' onClick={handleDelete}>Delete Account</Button>
+    <Button variant="outline-danger" className="mt-5" type="submit" onClick={handleDelete}>Delete Account</Button>
   </Card.Body>
 </Card>
 
