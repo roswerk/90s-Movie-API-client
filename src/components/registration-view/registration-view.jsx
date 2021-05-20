@@ -84,7 +84,7 @@ export function RegistrationView(props) {
         <Form.Label>Username:</Form.Label>
         <Form.Control type="text" placeholder="Enter a username of your choice" onChange={ e=>
           setUsername(e.target.value)} />
-          <Form.Text className="text-muted">*required</Form.Text>
+          <Form.Text>*required</Form.Text>
       </Form.Group>
 
       {Object.keys(usernameError).map((key) => {
@@ -97,7 +97,7 @@ export function RegistrationView(props) {
         <Form.Label>Password:</Form.Label>
         <Form.Control type="password" placeholder="Enter a password of your choice" onChange={e=>
           setPassword(e.target.value)} />
-          <Form.Text className="text-muted">*required</Form.Text>
+          <Form.Text>*required</Form.Text>
       </Form.Group>
 
       {Object.keys(passwordError).map((key) => {
@@ -109,7 +109,7 @@ export function RegistrationView(props) {
       <Form.Group controlId="registerEmail">
         <Form.Label>Email address:</Form.Label>
         <Form.Control type="email" placeholder="Enter valid email please" onChange={e=> setEmail(e.target.value)} />
-          <Form.Text className="text-muted">*required</Form.Text>
+          <Form.Text>*required</Form.Text>
       </Form.Group>
 
       {Object.keys(emailError).map((key) => {
@@ -123,10 +123,8 @@ export function RegistrationView(props) {
         <Form.Control type="date" placeholder="Date of Birth" onChange={e=> setBirthDate(e.target.value)} />
       </Form.Group>
 
-      <Button variant="danger" type="submit" onClick={handleRegister}><span
-          className="text-color">Register</span></Button>
-      <Link to={`/`}> <Button variant="light" type="submit"><span className="text-color">I already have an
-        Account</span></Button>
+      <Button variant="danger" type="submit" onClick={handleRegister}><span>Register</span></Button>
+      <Link to={`/`}> <Button variant="light" type="submit"><span>I already have an Account</span></Button>
       </Link>
     </Form>
     
