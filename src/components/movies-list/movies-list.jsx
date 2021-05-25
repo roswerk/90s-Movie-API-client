@@ -22,9 +22,6 @@ if (visibilityFilter !== " "){
 if(!movies) return <div className="main-view" />;
 
 return <>
-{/* <Col md={12} style={{margin: "1em"}}>
-  <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-  </Col> */}
     <Row>
     {filteredMovies.map(m => (
   <Col md={4} key={m._id}>
