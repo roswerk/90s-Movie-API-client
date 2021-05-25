@@ -17,7 +17,6 @@ const store = createStore(moviesApp, devToolsEnhancer());
 class MyFlixApplication extends React.Component{
   render(){
     return (
-// <Container> //
   <Provider store={store}>
 
   <Container className="mainView-Margin">
@@ -25,7 +24,6 @@ class MyFlixApplication extends React.Component{
   <MainView/>
   </Container>
   </Provider>
-//  </Container>
   );}
 };
 
