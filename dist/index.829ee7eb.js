@@ -30377,7 +30377,7 @@ class MovieView extends _reactDefault.default.Component {
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
             src: movie.imageURL,
             alt: "Movie Image",
-            className: "poster",
+            className: "movie-poster",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/movie-view/movie-view.jsx",
                 lineNumber: 38
@@ -40860,7 +40860,7 @@ class DirectorView extends _reactDefault.default.Component {
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
             src: director.directorImg,
             alt: "Director Image",
-            className: "poster",
+            className: "director-poster",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/director-view/director-view.jsx",
                 lineNumber: 20
@@ -41010,92 +41010,110 @@ class GenreView extends _reactDefault.default.Component {
             className: "genre-view",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
+                lineNumber: 15
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            __source: {
+                fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
                 lineNumber: 16
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            __source: {
+                fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
+                lineNumber: 17
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "genre-poster",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 17
+                lineNumber: 18
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
             src: genre.genreImg,
             alt: "Genre Image",
-            className: "poster",
+            className: "genre-poster",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 18
+                lineNumber: 19
             },
             __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        }))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            __source: {
+                fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
+                lineNumber: 22
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "genre-name",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 20
+                lineNumber: 23
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 21
+                lineNumber: 24
             },
             __self: this
         }, "Type: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 22
+                lineNumber: 25
             },
             __self: this
         }, genre.name)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "genre-description",
+            className: "genre-description mt-3",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 24
+                lineNumber: 27
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 25
+                lineNumber: 28
             },
             __self: this
         }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 26
+                lineNumber: 29
             },
             __self: this
-        }, genre.description)), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        }, genre.description)))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "mt-3",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 29
+                lineNumber: 33
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 30
+                lineNumber: 34
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: "/",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 31
+                lineNumber: 35
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "danger link",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 32
+                lineNumber: 36
             },
             __self: this
         }, "Movies")), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -41106,7 +41124,7 @@ class GenreView extends _reactDefault.default.Component {
             variant: "danger",
             __source: {
                 fileName: "/Users/Macbook/Desktop/Web Dev/CareerFoundry/Full Stack Inmersion/Module 3/task-3.2/90s-movies-api-client/src/components/genre-view/genre-view.jsx",
-                lineNumber: 34
+                lineNumber: 38
             },
             __self: this
         }, "Back")))));

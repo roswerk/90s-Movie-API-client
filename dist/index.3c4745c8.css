@@ -10,8 +10,8 @@
 .card-img-top {
   height: 450px;
 }
-.poster {
-  width: 250px;
+.movie-poster {
+  width: 300px;
   height: auto;
 }
 
@@ -53,6 +53,22 @@
   font-size: 1rem;
 }
 
+.director-poster {
+  width: 320px;
+  height: auto;
+}
+.genre-poster {
+  width: 400px;
+  height: auto;
+}
+
+.genre-name {
+  font-size: 2rem;
+}
+
+.genre-description {
+  font-size: 1rem;
+}
 .CardAchor {
   color: #dc3545;
 }
