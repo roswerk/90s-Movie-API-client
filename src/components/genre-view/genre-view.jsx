@@ -12,20 +12,24 @@ export class GenreView extends React.Component{
     const {movie, genre, onBackClick} = this.props;
 
     return(
-
-    <div className="genre-view">
+      <div className="genre-view">
+    <Row>
+      <Col>
       <div className="genre-poster">
-        <img src={genre.genreImg} alt="Genre Image" className="poster"/>
+        <img src={genre.genreImg} alt="Genre Image" className="genre-poster"/>
       </div>
+      </Col>
+      <Col>
       <div className="genre-name">
         <span className="label">Type: </span>
         <span className="value">{genre.name}</span>
       </div>
-      <div className="genre-description">
+      <div className="genre-description mt-3">
         <span className="label">Description: </span>
         <span className="value">{genre.description}</span>
       </div>
-         
+      </Col>
+      </Row>
  <Row className="mt-3">
    <Col>
       <Link to={"/"}>
