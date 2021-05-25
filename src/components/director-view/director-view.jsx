@@ -27,7 +27,7 @@ export class DirectorView extends React.Component{
       </div>
       <div className="Director-DOB">
         <span className="label">Date of Birth: </span>
-        <span className="value">{director.birthDate}</span>
+        <span className="value">{JSON.stringify(director.birthDate).slice(1,11)}</span>
       </div>
          
  <Row className="mt-3">
