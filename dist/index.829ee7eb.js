@@ -24630,7 +24630,7 @@ exports.unstable_batchedUpdates = _reactDom.unstable_batchedUpdates;
 },{"react-dom":"2sg1U"}],"2736c":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _redux = require("redux");
+// import {combineReducers} from "redux";
 var _actions = require("../actions/actions");
 function visibilityFilter(state = "", action) {
     switch(action.type){
@@ -24648,42 +24648,42 @@ function movies(state = [], action) {
             return state;
     }
 }
-// function loggedInUser(state = [], action) {
-//   switch (action.type) {
-//     case SET_USER:
-//       return action.value;
-//       default:
-//         return state;
-//   }
-// }
+function loggedInUser(state = [], action) {
+    switch(action.type){
+        case _actions.SET_USER:
+            return action.value;
+        default:
+            return state;
+    }
+}
 function moviesApp(state = {
 }, action) {
     return {
         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action)
+        movies: movies(state.movies, action),
+        loggedInUser: loggedInUser(state.loggedInUser, action)
     };
 }
 exports.default = moviesApp;
 
-},{"redux":"7panR","../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"5S6cN":[function(require,module,exports) {
+},{"../actions/actions":"5S6cN","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"5S6cN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES
 );
 parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
-// export const SET_USER = "SET_USER"
+parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
+);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
-); // export function setUser(value){
- //   return { 
- //     type: SET_USER, 
- //     value 
- //   };
- // }
+);
+parcelHelpers.export(exports, "setUser", ()=>setUser
+);
 const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
+const SET_USER = "SET_USER";
 function setMovies(value) {
     return {
         type: SET_MOVIES,
@@ -24693,6 +24693,12 @@ function setMovies(value) {
 function setFilter(value) {
     return {
         type: SET_FILTER,
+        value
+    };
+}
+function setUser(value) {
+    return {
+        type: SET_USER,
         value
     };
 }
