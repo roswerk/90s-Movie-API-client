@@ -24954,14 +24954,11 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/profile",
             render: ({ history  })=>{
-                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-                    md: 6
-                }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
-                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
-                })));
-                if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-                    className: "main-view"
-                }));
+                // if (!user) return (
+                // <Col md={6}>
+                //   <LoginView onLoggedIn = {user => this.onLoggedIn(user)} />
+                // </Col>)
+                // if (movies.length === 0) return <div className='main-view' />;
                 return(/*#__PURE__*/ _reactDefault.default.createElement(_containerDefault.default, null, /*#__PURE__*/ _reactDefault.default.createElement(_navbarView.NavbarView, null), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
                     md: 12
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_profileView.ProfileView, {

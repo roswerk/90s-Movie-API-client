@@ -168,12 +168,12 @@ return (
 
             <Route path='/profile' render={({history}) => {
 
-                  if (!user) return (
-                  <Col md={6}>
-                    <LoginView onLoggedIn = {user => this.onLoggedIn(user)} />
-                  </Col>)
+                  // if (!user) return (
+                  // <Col md={6}>
+                  //   <LoginView onLoggedIn = {user => this.onLoggedIn(user)} />
+                  // </Col>)
 
-                  if (movies.length === 0) return <div className='main-view' />;
+                  // if (movies.length === 0) return <div className='main-view' />;
 
                   return (
                     <Container>
