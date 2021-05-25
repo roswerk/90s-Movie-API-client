@@ -35,7 +35,7 @@ return(
     <Row>
       <Col>
     <div className="movie-poster">
-      <img src={movie.imageURL} alt="Movie Image" className="poster" />
+      <img src={movie.imageURL} alt="Movie Image" className="movie-poster" />
     </div>
     </Col>
     <Col>
