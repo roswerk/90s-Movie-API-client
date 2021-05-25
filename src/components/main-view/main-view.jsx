@@ -166,7 +166,7 @@ return (
                 }
                 } />
 
-<Route path='/profile' render={({history}) => {
+            <Route path='/profile' render={({history}) => {
 
                   if (!user) return (
                   <Col md={6}>
