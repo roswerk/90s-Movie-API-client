@@ -3,7 +3,6 @@ import axios from "axios";
 import "./main-view.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 import {connect} from "react-redux";
@@ -13,7 +12,6 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import {setMovies} from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
 
-// import {MovieCard} from "../movie-card/movie-card"; REDUX PROCEDURE
 import {MovieView} from "../movie-view/movie-view";
 import {LoginView} from "../login-view/login-view";
 import {RegistrationView} from "../registration-view/registration-view";
@@ -28,7 +26,6 @@ export class MainView extends React.Component{
 constructor(){
 super();
 this.state = {
-// movies: [], REDUX PROCEDURE
 selectedMovie: null,
 user: null,
 newUser: null,
@@ -54,7 +51,6 @@ selectedMovie: movie
 };
 
 onLoggedIn(authData) {
-// console.log("main-view console",authData);
 this.setState({
 user: authData.userObj.userName,
 });
@@ -72,12 +68,8 @@ axios.get('https://api90smovies.herokuapp.com/movies', {
 headers: { Authorization: `Bearer ${token}`}
 })
 .then(response => {
-// Assign the result to the state
-
-// this.setState({REDUX PROCEDURE
-// movies: response.data REDUX PROCEDURE
 this.props.setMovies(response.data)
-// });REDUX PROCEDURE
+
 })
 .catch(function (error) {
 console.log(error);
@@ -110,7 +102,7 @@ updateUser(data) {
 
 
 render() {
-const {/*movies, user, */ newUser, directors, genres, userInfo} = this.state;
+const {newUser, directors, genres, userInfo} = this.state;
 let { movies } = this.props;
 let { user } = this.state;
 
@@ -127,13 +119,6 @@ return (
         return(
         <div>
           <NavbarView />
-          {/* <Row>
-            {movies.map(m => (
-            <Col md={4} key={m._id}>
-            <MovieCard movie={m} />
-            </Col>)
-            )}
-          </Row> */}
           <MoviesList movies={movies}/>
         </div>)
         }} />
