@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
 
 let logout = function (){
   localStorage.removeItem("token");
@@ -33,6 +34,7 @@ export class NavbarView extends React.Component{
     </Nav>
   
     <Form inline>
+      <VisibilityFilterInput visibilityFilter={this.props.visibilityFilter} />
       <Button onClick={() => logout()} variant="outline-light">Logout</Button>
     </Form>
     
