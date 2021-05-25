@@ -32,22 +32,27 @@ return(
     <NavbarView />
   </div>
   <div className="movie-view">
+    <Row>
+      <Col>
     <div className="movie-poster">
       <img src={movie.imageURL} alt="Movie Image" className="poster" />
     </div>
+    </Col>
+    <Col>
     <div className="movie-title">
       <span className="label">Title: </span>
       <span className="value">{movie.title}</span>
     </div>
-    <div className="movie-description">
+    <div className="movie-description mt-5">
       <span className="label">Description: </span>
       <span className="value">{movie.description}</span>
     </div>
-    <div className="movie-director">
+    <div className="movie-director mt-5">
       <span className="label">Director: </span>
-      <span className="value">{movie.director.name}</span>
+      <Link className="value" to={`/directors/${movie.director.name}`} id="value-link">{movie.director.name}</Link>
     </div>
-
+    </Col>
+    </Row>
     <Row className="mt-3">
       <p className="ml-3">See more about:</p>
     </Row>
@@ -57,9 +62,9 @@ return(
 
     <Link to={`/genres/${movie.genre.name}`}> <Button variant="danger link" className="ml-3">Genre</Button>
     </Link>
-
-    <Button onClick={()=> {onBackClick(null);}} className="ml-3" variant="danger">Back</Button>
     <Button onClick={e=> addFav(e)} variant="danger" className="ml-3"><span>&#129293;</span></Button>
+    <Button onClick={()=> {onBackClick(null);}} className="ml-3" variant="danger">Back</Button>
+    
 
     </Col>
 
