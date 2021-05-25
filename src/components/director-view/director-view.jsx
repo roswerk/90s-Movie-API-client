@@ -17,7 +17,7 @@ export class DirectorView extends React.Component{
       <Row>
         <Col>
       <div className="director-poster">
-        <img src={director.directorImg} alt="Director Image" className="poster"/>
+        <img src={director.directorImg} alt="Director Image" className="director-poster"/>
       </div>
       </Col>
       <Col>
