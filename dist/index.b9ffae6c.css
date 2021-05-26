@@ -1,6 +1,19 @@
-.poster {
-  width: 250px;
+.movie-poster {
+  width: 300px;
   height: auto;
+}
+
+.movie-title {
+  font-size: 2rem;
+}
+
+.movie-description, .movie-director {
+  font-size: 1rem;
+}
+
+#value-link {
+  text-decoration: none;
+  color: #dc3545;
 }
 
 .registrationButton {
@@ -21,8 +34,30 @@
 .logginButton {
   text-align: center;
 }
+.Director-name {
+  font-size: 2rem;
+}
 
+.Director-bio, .Director-DOB {
+  font-size: 1rem;
+}
 
+.director-poster {
+  width: 320px;
+  height: auto;
+}
+.genre-poster {
+  width: 400px;
+  height: auto;
+}
+
+.genre-name {
+  font-size: 2rem;
+}
+
+.genre-description {
+  font-size: 1rem;
+}
 .CardAchor {
   color: #dc3545;
 }
