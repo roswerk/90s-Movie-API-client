@@ -11,6 +11,7 @@
   "license": "MIT License",
   "dependencies": {
     "@parcel/config-default": "*",
+    "@parcel/transformer-sass": "*",
     "@parcel/transformer-typescript-tsc": "*",
     "axios": "^0.21.1",
     "babel": "^6.23.0",
@@ -29,8 +30,5 @@
     "react-share": "^4.4.0",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9"
-  },
-  "devDependencies": {
-    "@parcel/transformer-sass": "*"
   }
 }
