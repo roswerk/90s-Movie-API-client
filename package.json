@@ -15,7 +15,7 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "bootstrap": "^4.6.0",
-    "parcel": "*",
+    "parcel": "^2.0.0-beta.3.1",
     "parse": "^3.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
