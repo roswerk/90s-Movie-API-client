@@ -2,10 +2,10 @@
   "name": "90s-movies-api-client",
   "version": "1.0.0",
   "description": "Client side of the 90's Movies API",
-  "main": "src/index.html",
+  "main": "public/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html"
+    "start": "parcel public/index.html"
   },
   "author": "Max Rosales",
   "license": "MIT License",
