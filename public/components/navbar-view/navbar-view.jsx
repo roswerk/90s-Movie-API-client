@@ -30,7 +30,7 @@ export class NavbarView extends React.Component{
     <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
       <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/profile">Profile</Nav.Link>
+      <Nav.Link href='/profile'>Profile</Nav.Link>
     </Nav>
   
     <Form inline>
