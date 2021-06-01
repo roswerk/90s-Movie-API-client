@@ -16,7 +16,6 @@
   "dependencies": {
     "@parcel/config-default": "^2.0.0-nightly.690",
     "@parcel/transformer-sass": "^2.0.0-nightly.690",
-    "@parcel/transformer-typescript-tsc": "*",
     "axios": "^0.21.1",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
