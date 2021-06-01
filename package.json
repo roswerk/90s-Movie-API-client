@@ -1,5 +1,6 @@
 {
   "name": "90s-movies-api-client",
+  "homepage": "https://client-90s-movies.herokuapp.com/",
   "version": "1.0.0",
   "engines": {
     "node": "14.16.0"
